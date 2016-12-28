@@ -30,7 +30,7 @@ import org.testng.ITestResult;
  * @Description 包装所有selenium的操作以及通用方法，简化用例中代码量
  * */
 public class SeleniumUtil {
-    /** 使用Log4j，第一步就是获取日志记录器，这个记录器将负责控制日志信息 */
+    /** 使用Log4j，获取日志记录器，这个记录器将负责控制日志信息 */
     public static Logger logger = Logger.getLogger(SeleniumUtil.class.getName());
     public ITestResult it = null;
     public WebDriver driver = null;
@@ -68,11 +68,7 @@ public class SeleniumUtil {
     }
 
     /**
-     * 设定浏览器窗口大小： 设置浏览器窗口的大小有下面两个比较常见的用途：<br>
-     * 1、在统一的浏览器大小下运行用例，可以比较容易的跟一些基于图像比对的工具进行结合
-     * ，提升测试的灵活性及普遍适用性。比如可以跟sikuli结合，使用sikuli操作flash；<br>
-     * 2、在不同的浏览器大小下访问测试站点，对测试页面截图并保存，然后观察或使用图像比对工具对被测页面的前端样式进行评测。
-     * 比如可以将浏览器设置成移动端大小(320x480)，然后访问移动站点，对其样式进行评估；<br>
+     * 设定浏览器窗口大小
      * */
     public void setBrowserSize(int width, int height) {
         driver.manage().window().setSize(new Dimension(width, height));
@@ -548,7 +544,7 @@ public class SeleniumUtil {
     /**
      * 上传文件，需要点击弹出上传照片的窗口才行
      *
-     * @param brower
+     * @param browser
      *            使用的浏览器名称
      * @param file
      *            需要上传的文件及文件名

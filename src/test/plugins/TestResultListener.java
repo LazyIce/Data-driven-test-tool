@@ -26,11 +26,11 @@ import org.testng.TestListenerAdapter;
 public class TestResultListener extends TestListenerAdapter {
 
     private static Logger logger = Logger.getLogger(TestResultListener.class.getName());
-    protected ITestContext testContext = null; // 这里也是新加的
+    protected ITestContext testContext = null;
     String  browser = null;
 
     @Override
-    public void onStart(ITestContext testContext) { // 这里也是新加的，用于对context进行统一
+    public void onStart(ITestContext testContext) {
         this.testContext = testContext;
         browser = String.valueOf(testContext.getCurrentXmlTest().getParameter("browserName"));
         super.onStart(testContext);
@@ -40,7 +40,7 @@ public class TestResultListener extends TestListenerAdapter {
     public void onTestFailure(ITestResult tr) {
         super.onTestFailure(tr);
         logger.warn(tr.getName() + " 测试用例执行失败！");
-        WebDriver webDriver = (WebDriver) testContext.getAttribute("SELENIUM_DRIVER"); // 这里就是取driver
+        WebDriver webDriver = (WebDriver) testContext.getAttribute("SELENIUM_DRIVER");
         saveScreenShot(tr, webDriver,browser);
     }
 
@@ -134,7 +134,6 @@ public class TestResultListener extends TestListenerAdapter {
         String fileName = mDateTime + "_" + tr.getName();
         String filePath = "";
         try {
-            // 这里可以调用不同框架的截图功能
             File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             filePath = "result/screenshot/"+ fileName + ".jpg";
             File destFile = new File(filePath);
